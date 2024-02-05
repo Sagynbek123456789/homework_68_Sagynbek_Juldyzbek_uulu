@@ -15,7 +15,7 @@ class AbstractModel(models.Model):
 class Article(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, validators=[MinLengthValidator(4), ],
                              verbose_name="Заголовок")
-    content = models.TextField(max_length=3000, null=False, blank=False, verbose_name='Контент')
+    content = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Контент')
     author = models.ForeignKey(get_user_model(), default=1, related_name='articles', on_delete=models.CASCADE, verbose_name="Автор")
     tags = models.ManyToManyField('webapp.Tag', blank=True, related_name='articles', verbose_name='Теги')
     likes = models.ManyToManyField(get_user_model(), related_name='likes_articles')
